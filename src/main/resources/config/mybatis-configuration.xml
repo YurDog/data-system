@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="false" />
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+	<typeAliases>
+		<package name="com.data.system.po" />
+	</typeAliases>
+	<!-- <environments default="development">
+		<environment id="development">
+			JDBC事物，MANAGED容器方式管理事物，自定义
+			<transactionManager type="JDBC" />
+			POOLED连接池数据库，UNPOOLED非连接池数据库，JNDI数据源，自定义
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver:com.mysql.jdbc.Driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments> -->
+	<mappers>
+		<mapper resource="mapper/RoleMapper.xml" />
+	</mappers>
+</configuration>
