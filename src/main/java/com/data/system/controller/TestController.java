@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.data.system.service.RoleService;
 
 @RestController
+@RequestMapping(value = "/my", produces = "application/json;charset=UTF-8")
 public class TestController {
 	
 	@Autowired
