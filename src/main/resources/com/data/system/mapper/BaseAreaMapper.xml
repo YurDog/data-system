@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.system.mapper.BaseAreaMapper">
+  <resultMap id="BaseResultMap" type="com.data.system.po.BaseArea">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code_id" jdbcType="VARCHAR" property="codeId" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.data.system.po.BaseArea">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into base_area (id, code_id, parent_id, 
+      city_name)
+    values (#{id,jdbcType=INTEGER}, #{codeId,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.data.system.po.BaseArea">
+    update base_area
+    set code_id = #{codeId,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, code_id, parent_id, city_name
+    from base_area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, code_id, parent_id, city_name
+    from base_area
+  </select>
+</mapper>

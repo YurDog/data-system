@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="C:\Users\QHD\.m2\repository\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar" />
+	<context id="context1" targetRuntime="MyBatis3Simple"
+		defaultModelType="flat">
+		<commentGenerator type="com.data.system.util.MyCommentGenerator">
+			<property name="suppressAllComments" value="true" />
+			<property name="addRemarkComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection
+			connectionURL="jdbc:mysql://localhost:3306/data-system?characterEncoding=utf8"
+			driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
+		<javaModelGenerator targetPackage="com.data.system.po"
+			targetProject="data-system/src/main/java" />
+		<sqlMapGenerator targetPackage="com.data.system.mapper"
+			targetProject="data-system/src/main/resources" />
+		<javaClientGenerator targetPackage="com.data.system.mapper"
+			targetProject="data-system/src/main/java" type="XMLMAPPER" />
+		<table tableName="%">
+			<generatedKey column="id" sqlStatement="MySql" />
+		</table>
+	</context>
+</generatorConfiguration>
