@@ -17,7 +17,9 @@ public class TestController {
 
 	@RequestMapping("/test")
 	public String test(@RequestParam(name = "id", required = true) Integer id) {
+		System.out.println("aaaaa");
 		UserInfo userInfo = roleService.getUserName(id);
+		System.out.println("bbbb" + userInfo);
 		return userInfo ==null? "":userInfo.getUserName();
 	}
 }

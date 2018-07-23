@@ -25,6 +25,6 @@
 		</environment>
 	</environments> -->
 	<mappers>
-		<mapper resource="mapper/RoleMapper.xml" />
+		<package name="com.data.system.mapper"/>
 	</mappers>
 </configuration>

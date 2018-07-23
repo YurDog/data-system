@@ -11,6 +11,12 @@ import org.mybatis.generator.config.PropertyRegistry;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 import org.springframework.util.StringUtils;
 
+/**
+ * 失败了
+ * 
+ * @author 小二狗
+ *
+ */
 public class MyCommentGenerator extends DefaultCommentGenerator {
 	private boolean suppressAllComments;
 	private boolean addRemarkComments;
@@ -26,8 +32,7 @@ public class MyCommentGenerator extends DefaultCommentGenerator {
 		return "true".equalsIgnoreCase(s); //$NON-NLS-1$
 	}
 
-	public void addFieldComment(Field field, IntrospectedTable introspectedTable,
-			IntrospectedColumn introspectedColumn) {
+	public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
 		if (suppressAllComments) {
 			return;
 		}

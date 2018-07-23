@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.data.system.mapper.UserInfoMapper">
-  <resultMap id="BaseResultMap" type="com.data.system.po.UserInfo">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_no" jdbcType="VARCHAR" property="userNo" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="aliases" jdbcType="VARCHAR" property="aliases" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="address" jdbcType="INTEGER" property="address" />
-    <result column="sex" jdbcType="TINYINT" property="sex" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="profile_picture" jdbcType="VARCHAR" property="profilePicture" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user_info
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.data.system.po.UserInfo">
-    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into user_info (id, user_no, user_name, 
-      aliases, phone, address, 
-      sex, create_time, status, 
-      profile_picture)
-    values (#{id,jdbcType=INTEGER}, #{userNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{aliases,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=INTEGER}, 
-      #{sex,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
-      #{profilePicture,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.data.system.po.UserInfo">
-    update user_info
-    set user_no = #{userNo,jdbcType=VARCHAR},
-      user_name = #{userName,jdbcType=VARCHAR},
-      aliases = #{aliases,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      address = #{address,jdbcType=INTEGER},
-      sex = #{sex,jdbcType=TINYINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=TINYINT},
-      profile_picture = #{profilePicture,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, user_no, user_name, aliases, phone, address, sex, create_time, status, 
-    profile_picture
-    from user_info
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, user_no, user_name, aliases, phone, address, sex, create_time, status, 
-    profile_picture
-    from user_info
-  </select>
+	<resultMap id="BaseResultMap" type="com.data.system.po.UserInfo">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_no" jdbcType="VARCHAR" property="userNo" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="aliases" jdbcType="VARCHAR" property="aliases" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="address" jdbcType="INTEGER" property="address" />
+		<result column="sex" jdbcType="TINYINT" property="sex" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="profile_picture" jdbcType="VARCHAR" property="profilePicture" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_info
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.data.system.po.UserInfo">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into user_info (id, user_no, user_name,
+		aliases, phone, address,
+		sex, create_time, status,
+		profile_picture)
+		values (#{id,jdbcType=INTEGER}, #{userNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+		#{aliases,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=INTEGER},
+		#{sex,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT},
+		#{profilePicture,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.data.system.po.UserInfo">
+		update user_info
+		set user_no = #{userNo,jdbcType=VARCHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
+		aliases = #{aliases,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		address = #{address,jdbcType=INTEGER},
+		sex = #{sex,jdbcType=TINYINT},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=TINYINT},
+		profile_picture = #{profilePicture,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select id, user_no, user_name, aliases, phone, address, sex, create_time, status,
+		profile_picture
+		from user_info
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, user_no, user_name, aliases, phone, address, sex, create_time, status,
+		profile_picture
+		from user_info
+	</select>
 </mapper>
