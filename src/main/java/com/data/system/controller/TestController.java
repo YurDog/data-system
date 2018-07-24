@@ -1,5 +1,6 @@
 package com.data.system.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,8 @@ public class TestController {
 	private RoleService roleService;
 
 	@RequestMapping("/test")
-	public String test(@RequestParam(name = "id", required = true) Integer id) throws Exception {
-		JSONObject result = roleService.getUserName(id);
-		if (id == 0) {
-			throw new NullPointerException();
-		}
+	public String test(@RequestParam(name = "id", required = true) Integer id,@RequestParam(name="phone")String phone) throws Exception {
+		JSONObject result = roleService.getUserName(id,phone);
 		return result.toJSONString();
 	}
 }

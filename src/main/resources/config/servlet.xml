@@ -12,5 +12,11 @@
 	<mvc:annotation-driven/>
 	<mvc:default-servlet-handler/>
 	<context:component-scan base-package="com.data.system.controller"/>
-	<aop:aspectj-autoproxy expose-proxy="true"/>
+	<!-- <aop:aspectj-autoproxy expose-proxy="true"/> -->
+	<bean id="dataSystemAspect" class="com.data.system.aspect.DataSystemAspect"/>
+	<aop:config>
+		<aop:aspect ref="dataSystemAspect">
+			<aop:around method="aroundController" pointcut="execution(** com.data.system.controller..*.*(..))"/>
+		</aop:aspect>
+	</aop:config>
 </beans>

@@ -14,6 +14,7 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.SourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,30 +24,30 @@ import com.alibaba.fastjson.JSONObject;
 import com.data.system.util.RequestChainSignature;
 import com.data.system.util.ResponseFormatUtil;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class DataSystemAspect {
 
 	Logger logger = LoggerFactory.getLogger(DataSystemAspect.class);
 
-	// @Before("execution(** com.data.system.controller..*.*(..))")
-	// public void beforeController() {
-	// logger.info("before controller");
-	// }
+	// @Pointcut("execution(** com.data.system.controller..*.*(..))")
+	public void ControllerExecution() {
 
-	@Around("execution(** com.data.system.controller..*.*(..))")
-	public String aroundController(JoinPoint joinPoint) throws Throwable {
+	}
+
+	// @Around("ControllerExecution()")
+	public String aroundController(ProceedingJoinPoint joinPoint) throws Throwable {
 		long beginTime = System.currentTimeMillis();
-		ProceedingJoinPoint proceedingJoinPoint = (ProceedingJoinPoint) joinPoint;
-		Object[] args = proceedingJoinPoint.getArgs();
-		Signature signature = proceedingJoinPoint.getSignature();
+		Object[] args = joinPoint.getArgs();
+		Signature signature = joinPoint.getSignature();
 		String key = UUID.randomUUID().toString();
 		RequestChainSignature.setSignature(key);
 		String method = signature.toString();
 		logger.info(getLogInfo(method, "参数", Arrays.toString(args)));
-		String result = null;;
+		String result = null;
+		;
 		try {
-			result = (String) proceedingJoinPoint.proceed();
+			result = (String) joinPoint.proceed();
 		} catch (Exception e) {
 			logger.info(getLogInfo(method, "异常", e));
 			result = ResponseFormatUtil.error().toJSONString();
@@ -64,21 +65,8 @@ public class DataSystemAspect {
 			logger.error(RequestChainSignature.getSignature() + " ", throwable);
 			value = throwable.toString();
 		}
-		buffer.append(RequestChainSignature.getSignature()).append(" ").append(method).append(" ").append(message).append(" : ").append(value.toString());
+		buffer.append(RequestChainSignature.getSignature()).append(" ").append(method).append(" ").append(message)
+				.append(" : ").append(value.toString());
 		return buffer.toString();
 	}
-	// @After("execution(** com.data.system.controller..*.*(..))")
-	// public void afterController() {
-	// logger.info("after controller");
-	// }
-	//
-	// @AfterReturning("execution(** com.data.system.controller..*.*(..))")
-	// public void afterReturnController() {
-	// logger.info("afterReturn controller");
-	// }
-	//
-	// @AfterThrowing("execution(** com.data.system.controller..*.*(..))")
-	// public void afterThrowController() {
-	// logger.info("afterThrow controller error");
-	// }
 }

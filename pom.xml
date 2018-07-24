@@ -115,7 +115,7 @@
 					<encoding>utf-8</encoding>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>3.0.0</version>
@@ -125,7 +125,7 @@
 					<findbugsXmlOutput>true</findbugsXmlOutput>
 					<findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>
 				</configuration>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 </project>
