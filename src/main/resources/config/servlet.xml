@@ -17,6 +17,7 @@
 	<aop:config>
 		<aop:aspect ref="dataSystemAspect">
 			<aop:around method="aroundController" pointcut="execution(** com.data.system.controller..*.*(..))"/>
+			<!-- <aop:after-returning method="addSuccessLog" pointcut="within(com.data.system.service.*) and @annotation(com.data.system.annotation.FileLog)"/> -->
 		</aop:aspect>
 	</aop:config>
 </beans>

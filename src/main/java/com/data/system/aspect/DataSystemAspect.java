@@ -1,26 +1,15 @@
 package com.data.system.aspect;
 
 import java.util.Arrays;
-import java.util.Random;
 import java.util.UUID;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.JoinPoint.StaticPart;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.SourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSONObject;
+import com.data.system.annotation.FileLog;
 import com.data.system.util.RequestChainSignature;
 import com.data.system.util.ResponseFormatUtil;
 
@@ -65,8 +54,21 @@ public class DataSystemAspect {
 			logger.error(RequestChainSignature.getSignature() + " ", throwable);
 			value = throwable.toString();
 		}
-		buffer.append(RequestChainSignature.getSignature()).append(" ").append(method).append(" ").append(message)
-				.append(" : ").append(value.toString());
+		buffer.append(RequestChainSignature.getSignature()).append(" ").append(method).append(" ").append(message).append(" : ").append(value.toString());
 		return buffer.toString();
 	}
+
+	public void addSuccessLog(JoinPoint joinPoint, FileLog log) {
+		Object[] args = joinPoint.getArgs();
+		// 获取目标方法体参数
+		String className = joinPoint.getTarget().getClass().toString();
+		// 获取目标类名
+		String signature = joinPoint.getSignature().toString();
+		// 获取目标方法的签名
+		String methodName = signature.substring(signature.lastIndexOf(".") + 1, signature.indexOf("("));
+		// 获取注解值
+		String desc = log.value();
+		logger.info("asdasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+	}
+
 }

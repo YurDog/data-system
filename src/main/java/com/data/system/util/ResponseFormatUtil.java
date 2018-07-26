@@ -2,6 +2,12 @@ package com.data.system.util;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * http 接口返回格式 ，以及错误枚举
+ * 
+ * @author 小二狗
+ *
+ */
 public class ResponseFormatUtil {
 	public enum ResponseCode {
 		SUCCESS("0000", "成功"), PARAMS_ERROR("1001", "参数错误"), SYSTEM_ERROR("9999", "系统繁忙");
