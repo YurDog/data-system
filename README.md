@@ -5,7 +5,7 @@
 #### 2.Spring MVC
 #### 3.Mybatis
 #### 4.Flyway
-
+#### 5.Netflix Hystrix
 
 
 
@@ -18,7 +18,7 @@
 
 ### 2018.07.24 
 - Flyway配置打开后未报错？？--已解决
-- 添加静态ThreadLocal<String>,结合AOP，初步实现一条请求链的日志中都包含该线程的ThreadLocal中保存的字符串(UUID)，便于bug溯源（Dapper）
+- 添加静态ThreadLocal<String>,结合AOP，初步实现一条请求链的日志中都包含该线程的ThreadLocal中保存的字符串(UUID)，便于bug溯源（种草Dapper）
 - Maven pom.xml 添加编译打包的插件，解决默认打包发布到服务器上的乱码问题
 - 定义API返回格式，及错误码枚举
 - JavaConfig Aspect改为XML配置
