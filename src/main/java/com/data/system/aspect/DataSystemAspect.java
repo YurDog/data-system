@@ -10,11 +10,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.data.system.annotation.FileLog;
+import com.data.system.command.ControllerHystrixCommand;
 import com.data.system.util.RequestChainSignature;
 import com.data.system.util.ResponseFormatUtil;
 
-//@Aspect
-//@Component
+/**
+ * Spring AOP 拦截接口请求，加入熔断器
+ * 
+ * @author 小二狗
+ *
+ */
+// @Aspect
+// @Component
 public class DataSystemAspect {
 
 	Logger logger = LoggerFactory.getLogger(DataSystemAspect.class);
@@ -34,11 +41,13 @@ public class DataSystemAspect {
 		String method = signature.toString();
 		logger.info(getLogInfo(method, "参数", Arrays.toString(args)));
 		String result = null;
-		;
 		try {
-			result = (String) joinPoint.proceed();
+			result = new ControllerHystrixCommand(joinPoint).execute();
+			if (result == null) {// 说明接口报错,或FallBack
+				result = ResponseFormatUtil.error().toJSONString();
+			}
 		} catch (Exception e) {
-			logger.info(getLogInfo(method, "异常", e));
+			logger.error(getLogInfo(method, "异常", result));
 			result = ResponseFormatUtil.error().toJSONString();
 		}
 		logger.info(getLogInfo(method, "结果", result));
@@ -58,17 +67,17 @@ public class DataSystemAspect {
 		return buffer.toString();
 	}
 
-	public void addSuccessLog(JoinPoint joinPoint, FileLog log) {
-		Object[] args = joinPoint.getArgs();
-		// 获取目标方法体参数
-		String className = joinPoint.getTarget().getClass().toString();
-		// 获取目标类名
-		String signature = joinPoint.getSignature().toString();
-		// 获取目标方法的签名
-		String methodName = signature.substring(signature.lastIndexOf(".") + 1, signature.indexOf("("));
-		// 获取注解值
-		String desc = log.value();
-		logger.info("asdasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-	}
+//	public void addSuccessLog(JoinPoint joinPoint, FileLog log) {
+//		Object[] args = joinPoint.getArgs();
+//		// 获取目标方法体参数
+//		String className = joinPoint.getTarget().getClass().toString();
+//		// 获取目标类名
+//		String signature = joinPoint.getSignature().toString();
+//		// 获取目标方法的签名
+//		String methodName = signature.substring(signature.lastIndexOf(".") + 1, signature.indexOf("("));
+//		// 获取注解值
+//		String desc = log.value();
+//		logger.info("asdasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+//	}
 
 }

@@ -26,3 +26,5 @@
 - 尝试钉钉机器人（部门任务）
 ### 2018.07.26
 - 开始学习Hystrix（部门任务）
+### 2018.07.28
+- 接入Netflix Hystrix，在Spring AOP拦截接口请求处，将ProceedingJoinPoint.proceed()置入熔断器逻辑判断中，当一定时间内的某个请求出现异常超时，会触发降级，节约资源

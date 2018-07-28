@@ -28,6 +28,10 @@ public class CommandHelloWorld extends HystrixCommand<String> {
 				.andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
 						//开启熔断器机制
 						.withCircuitBreakerEnabled(true)
+						//10s内请求数达到3个就触发熔断器
+						.withCircuitBreakerRequestVolumeThreshold(3)
+						//错误率达到80%
+						.withCircuitBreakerErrorThresholdPercentage(80)
 						//舱壁隔离策略
 						.withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
 						//circuitBreaker打开多久后关闭
@@ -37,6 +41,12 @@ public class CommandHelloWorld extends HystrixCommand<String> {
 
 	@Override
 	protected String run() throws Exception {
+		System.out.println("-----------"+name+ "-----run--------------");
 		return "Hello" + name + "!";
+	}
+	
+	@Override
+	protected String getFallback() {
+		return "error error error error";
 	}
 }

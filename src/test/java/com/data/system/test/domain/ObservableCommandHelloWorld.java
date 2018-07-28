@@ -37,5 +37,8 @@ public class ObservableCommandHelloWorld extends HystrixObservableCommand<String
 			}
 		}).subscribeOn(Schedulers.io());
 	}
-
+	@Override
+	protected Observable<String> resumeWithFallback() {
+		return super.resumeWithFallback();
+	}
 }
